@@ -4,3 +4,95 @@
     object-fit: contain;
 
 }
+.buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #E2A000;
+    color: black;
+}
+
+.btn-secondary {
+    background-color: #444;
+    color: white;
+}
+
+.form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    background-color: #E2A000;
+    color: black;
+}
+
+.btn-close {
+    background-color: #d9534f;
+    color: white;
+}
+
+.cookie-banner{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000 ;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.cookie-banner p{
+    font-size: 16px;
+}
+.cookie-banner p a{
+    color:#fff ;
+}
+.cookie-banner button{
+    background-color:#fff ;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    border:0px;
+    display: block;
+    width:fit-content ;
+
+}
