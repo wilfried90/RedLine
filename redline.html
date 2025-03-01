@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+
+            /* mise de en forme de laccueille */
+            body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .age-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 50%;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn-yes {
+            background-color: green;
+            color: white;
+        }
+        .btn-no {
+            background-color: red;
+            color: white;
+        }
+
+            /* mise en forme du corps  */
+        
+            .obj{
+    width:200px;
+    height: 300px;;
+    object-fit: contain;
+
+}
+.buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #E2A000;
+    color: black;
+}
+
+.btn-secondary {
+    background-color: #444;
+    color: white;
+}
+
+.form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-box input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    background-color: #E2A000;
+    color: black;
+}
+
+.btn-close {
+    background-color: #d9534f;
+    color: white;
+}
+
+.cookie-banner{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000 ;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.cookie-banner p{
+    font-size: 16px;
+}
+.cookie-banner p a{
+    color:#fff ;
+}
+.cookie-banner button{
+    background-color:#fff ;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    border:0px;
+    display: block;
+    width:fit-content ;
+
+}
+    
+        
+
+    </style>
+</head>
+<body>
+
+    <div id="ageModal" class="age-modal">
+        <div class="modal-content">
+            <h2>Accès réservé aux adultes</h2>
+            <p>Vous devez avoir 18 ans ou plus pour entrer sur ce site.</p>
+            <button class="btn-yes" onclick="confirmAge()">J'ai 18 ans ou plus</button>
+            <button class="btn-no" onclick="denyAccess()">J'ai moins de 18 ans</button>
+        </div>
+    </div>
+    
+    <div id="content" style="display: none;">
+         <!-- HEADER -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">ALLEZCINE!</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#movies">Films</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#series">Séries</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#shop">Boutique</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                    <form class="navbar-form pull-right">
+                        <input type="text" class="form-control input-sm" placeholder='Entrez un texte'>
+                        <button type="submit" cl="btn-primary btn-sm">rechercher</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- SECTION SLIDER -->
+    <section id="slider" class="container my-5">
+        <div class="carousel slide" id="carouselExample" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="C:\Users\DELL\Downloads\image film\5.webp" class="d-block w-100" alt="Slider Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="C:\Users\DELL\Downloads\image film\venom2.jpg" class="d-block w-100" alt="Slider Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="C:\Users\DELL\Downloads\image film\venom.jpg" class="d-block w-100" alt="Slider Image 3">
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="#">Contact: 0465707072</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <div class="buttons-container">
+
+                            <button class="btn btn-primary" onclick="showForm('register')">Inscrivez-vous
+                                gratuitement</button>
+                            <button class="btn btn-secondary" onclick="showForm('login')">Se connecter</button>
+                            <div class="form-container" id="register-form">
+                                <div class="form-box">
+                                    <h2>Inscription</h2>
+                                    <input type="text" placeholder="Nom complet">
+                                    <input type="email" placeholder="Email">
+                                    <input type="password" placeholder="Mot de passe">
+                                    <button class="btn btn-submit">S'inscrire</button>
+                                    <button class="btn btn-close" onclick="hideForms()">Fermer</button>
+                                </div>
+                            </div>
+
+                            <div class="form-container" id="login-form">
+                                <div class="form-box">
+                                    <h2>Connexion</h2>
+                                    <input type="email" placeholder="Email">
+                                    <input type="password" placeholder="Mot de passe">
+                                    <button class="btn btn-submit">Se connecter</button>
+                                    <button class="btn btn-close" onclick="hideForms()">Fermer</button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+            </nav>
+        </header>
+    </section>
+
+    <!-- SECTION FILMS -->
+    <section id="movies" class="container my-5">
+        <h2 class="text-center">Films Populaires</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="C:\Users\DELL\Downloads\Programs\a.jpg" class="obj" alt="Film 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Film 1</h5>
+                        <button class="btn btn-primary">Voir</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="C:\Users\DELL\Downloads\Programs\b.jpg" class="obj" alt="Film 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Film 2</h5>
+                        <button class="btn btn-primary">Voir</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="C:\Users\DELL\Downloads\Programs\c.jpg" class="obj" alt="Film 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Film 3</h5>
+                        <button class="btn btn-primary">Voir</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="C:\Users\DELL\Downloads\Programs\d.jpg" class="obj" alt="Film 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Film 4</h5>
+                        <button class="btn btn-primary">Voir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="movies" class="container my-5">
+        <h2 class="text-center">Nouveau Populaires</h2>
+
+
+
+    </section>
+    <section>
+        <div class="sect-title fx-1">
+            <h2>Tendances</h2>
+        </div>
+        <div class="sect-content sect-slide-items clearfix">
+            <div class="owl-carousel">
+                <div class="thumb">
+                    <link rel="preload" href="C:\Users\DELL\Downloads\image film\thor.jpg" as="image">
+                    <div class="th-in">
+                        <a class="th-img img-resp-vert with-mask"
+                            href="https://youtu.be/ue80QwXMRHg?si=LeilPi5wMQ55LSak" title="THOR RAGNAROK">
+                            <img class="obj" src="C:\Users\DELL\Downloads\image film\thor.jpg" alt="THOR RAGNAROK"
+                                title="{img-title}">
+                        </a>
+                        <div class="th-desc"><a class="th-title" href="https://youtu.be/ue80QwXMRHg?si=LeilPi5wMQ55LSak"
+                                title="THOR RAGNAROK"> THOR RAGNAROK </a></div>
+                    </div>
+
+    </section>
+    <section>
+        <div id="cookie-banner" class="cookie-banner">
+            <p>
+                Nous utilisons les cokie pour ameliore votre experience. en continuant a utiliser notre notre site, vous
+                acceptez nos condition dutilisation.
+                <a href="/poliques-rgpd"> En savoir plus</a>
+            </p>
+            <button id="accept-cookies">Accepter</button>
+            <button id="refus-cookies">refus</button>
+        </div>
+        <script src="script.js"></script>
+       
+    </div>
+
+
+    
+
+    <script> 
+
+                
+                <!-- ici qui permet audorise les cookies -->
+
+        function showForm(formType) {
+            document.getElementById('register-form').style.display = (formType === 'register') ? 'block' : 'none';
+            document.getElementById('login-form').style.display = (formType === 'login') ? 'block' : 'none';
+        }
+        
+        function hideForms() {
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'none';
+        }
+        
+        document.addEventListener("DOMContentLoaded", function(){
+            const cookiebanner = document.getElementById("cookie-banner")
+            const acceptbutton = document.getElementById("accept-cookies")
+        
+            function executescript(){
+                console.log("les scripts sont declanches !")
+                
+            }
+        
+            if (localStorage.getItem('cookiesaccepted') === 'true'){
+                 cookiebanner.style.display= "none";
+                 executescript();
+            }
+        
+            acceptbutton.addEventListener('click',function(){
+                localStorage.setItem('cookiesaccepted','true');
+                cookiebanner.style.display = "none";
+                executescript();
+            })
+        
+        })
+
+        <!-- ce qui permet de Confirmer ci on a plus de 18 ans  -->
+
+        function confirmAge() {
+            document.getElementById("ageModal").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+        
+        function denyAccess() {
+            alert("Désolé, vous n'avez pas l'âge requis.");
+            window.location.href = "https://ecole-it.com/";
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("ageModal").style.display = "flex";
+            document.getElementById("content").style.display = "none";
+        });
+
+
+          
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
